@@ -1,5 +1,6 @@
 :root {
     ---background-gradient: linear-gradient(to bottom, lightblue, black);
+    ---background-gradient-reverse: linear-gradient(to top, lightblue, black);
     ---text-for-gradient: white;
 }
 
@@ -8,6 +9,21 @@
 }
 
 .jumbotron {
+    background-image: var(---background-gradient);
+    color: var(---text-for-gradient);
+}
+
+.btn {
+    background-image: var(---background-gradient);
+    color: var(---text-for-gradient);
+}
+
+.btn:hover {
+    text-decoration: underline;
+    background-image: var(---background-gradient-reverse);
+}
+
+.forecast {
     background-image: var(---background-gradient);
     color: var(---text-for-gradient);
 }
