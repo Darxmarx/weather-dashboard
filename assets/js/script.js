@@ -64,22 +64,19 @@ function currentWeather(city){
         if(response.cod == 200){
             sCity = JSON.parse(localStorage.getItem("cityname"));
             console.log(sCity);
+
             if (sCity == null){
                 sCity = [];
                 sCity.push(city
                 );
                 localStorage.setItem("cityname",JSON.stringify(sCity));
                 addToList(city);
-            }
-            else {
-                if(find(city)>0){
-                    sCity.push(city);
-                    localStorage.setItem("cityname",JSON.stringify(sCity));
-                    addToList(city);
-                }
+            } else if (find(city) > 0) {
+                sCity.push(city);
+                localStorage.setItem("cityname",JSON.stringify(sCity));
+                addToList(city);
             }
         }
-
     });
 }
 
@@ -88,11 +85,11 @@ function UVIndex(ln,lt) {
     //url for uv index
     var uvqURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lt + "&lon=" + ln;
     $.ajax({
-            url:uvqURL,
-            method:"GET"
-            }).then(function(response){
-                $(currentUvIndex).html(response.value);
-            });
+            url: uvqURL,
+            method: "GET"
+        }).then(function(response){
+            $(currentUvIndex).html(response.value);
+        });
 }
     
 //5-day forecast function
@@ -129,37 +126,34 @@ function addToList(c) {
 }
 
 //function that displays information for previous search
-function invokePastSearch(event){
+function invokePastSearch(event) {
     var liEl = event.target;
     if (event.target.matches("li")) {
         city = liEl.textContent.trim();
         currentWeather(city);
     }
-
 }
 
 //loads from local storage
-function loadlastCity(){
+function loadlastCity() {
     $("ul").empty();
     var sCity = JSON.parse(localStorage.getItem("cityname"));
-    if(sCity !== null){
+    if (sCity !== null){
         sCity = JSON.parse(localStorage.getItem("cityname"));
-        for(i = 0; i <sCity.length; i++){
+        for (i = 0; i <sCity.length; i++){
             addToList(sCity[i]);
         }
-        city=sCity[i-1];
+        city = sCity[i-1];
         currentWeather(city);
     }
-
 }
 
 //clears search history and local storage
-function clearHistory(event){
+function clearHistory(event) {
     event.preventDefault();
-    sCity=[];
+    sCity = [];
     localStorage.removeItem("cityname");
     document.location.reload();
-
 }
 
 //button event listeners
