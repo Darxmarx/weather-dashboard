@@ -1,0 +1,13 @@
+:root {
+    ---background-gradient: linear-gradient(to bottom, lightblue, black);
+    ---text-for-gradient: white;
+}
+
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.jumbotron {
+    background-image: var(---background-gradient);
+    color: var(---text-for-gradient);
+}
